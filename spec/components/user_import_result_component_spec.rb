@@ -1,15 +1,21 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe UserImportResultComponent, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  include ViewComponent::TestHelpers
+  let(:user_import_result) do
+    OpenStruct.new(
+      status: ImportStatus::PARTIAL_SUCCESS,
+      description: "User import completed with some errors",
+      results: []
+    )
+  end
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+  subject { render_inline(described_class.new(user_import_result: user_import_result)) }
+
+  it 'renders the status and description' do
+    expect(subject.text).to include(user_import_result.status)
+    expect(subject.text).to include("User import completed with some errors")
+  end
 end

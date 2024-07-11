@@ -1,2 +1,11 @@
-<div>Add UserImportResult template here</div>
-<div>TODO: Loop over user results and render each of their templates</div>
+<div class="card my-4">
+  <div class="card-header">
+    <h2><%= @user_import_result.status %></h2>
+    <h5><%= @user_import_result.description %></h3>
+  </div>
+  <div class="card-body">
+    <% @user_import_result.results.each do |user_result| %>
+      <%= render UserResultComponent.new(user_result: user_result) %>
+    <% end %>
+  </div>
+</div>

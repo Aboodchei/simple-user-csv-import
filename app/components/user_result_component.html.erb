@@ -1,1 +1,15 @@
-<div>Add UserResult template here</div>
+<div class="card mb-3 <%= @user_result.status == ImportStatus::SUCCESS ? 'border-success' : 'border-danger' %>">
+  <div class="card-body">
+    <h5 class="card-title"><%= @user_result.name %> (Row <%= @user_result.row%>)</h5>
+    <small>Password: <%= @user_result.password %></small>
+    <br>
+    <span class="card-text"><%= @user_result.status %>: <%= @user_result.description %></span>
+    <% if @user_result.errors.any? %>
+      <ul class="text-danger">
+        <% @user_result.errors.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>

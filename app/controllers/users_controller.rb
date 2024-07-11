@@ -4,7 +4,11 @@ class UsersController < ApplicationController
   def index
   end
 
-  def upload
-    # TODO call UserImportService and return a UserImportResult @result
+  def import
+    file = params[:file]
+    @result = UserImportService.call(file: file)
+    respond_to do |format|
+      format.turbo_stream
+    end
   end
 end

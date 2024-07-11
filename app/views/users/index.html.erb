@@ -1,3 +1,14 @@
-<%# Render a form %>
+<div class="container my-4">
+  <h1>Import Users</h1>
 
-<%# Render @result (UserImportResult instance) view component if @result present %>
+  <%= form_with(url: import_path, multipart: true, class: 'mb-4') do |form| %>
+    <div class="mb-3">
+      <%= form.label :file, 'Choose CSV file', class: 'form-label' %>
+      <%= form.file_field :file, accept: '.csv', class: 'form-control' %>
+    </div>
+    <%= form.submit 'Upload', class: 'btn btn-primary' %>
+  <% end %>
+
+  <div id="import-result">
+  </div>
+</div>

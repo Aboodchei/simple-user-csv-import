@@ -1,0 +1,9 @@
+<%= turbo_stream.replace "import-result" do %>
+  <div id="import-result">
+    <% if @result %>
+      <%= render UserImportResultComponent.new(user_import_result: @result) %>
+    <% else %>
+      <p>There was an error processing the file.</p>
+    <% end %>
+  </div>
+<% end %>
