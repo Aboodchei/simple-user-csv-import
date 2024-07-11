@@ -33,7 +33,7 @@ RSpec.describe User, type: :model do
       end
 
       context "when password is too long" do
-        let(:password) { "Abc123" * 2 }
+        let(:password) { "Abc123" * 4 }
 
         it "is invalid" do
           expect(subject).to be_invalid
@@ -82,13 +82,43 @@ RSpec.describe User, type: :model do
 
         it "is invalid" do
           expect(subject).to be_invalid
-          expect(subject.errors[:password]).to eq([
+          expect(subject.errors[:password].sort).to eq([
             "must be between 10 and 16 characters long",
             "must contain at least one uppercase character",
             "must contain at least one lowercase character",
             "must contain at least one digit",
             "cannot contain three repeating characters in a row"
-          ])
+          ].sort)
+        end
+      end
+
+      context "when password is blank/nil" do
+        let(:password) { "" }
+
+        it "is invalid" do
+          expect(subject).to be_invalid
+          expect(subject.errors[:password].sort).to eq([
+            "can't be blank",
+            "must be between 10 and 16 characters long",
+            "must contain at least one uppercase character",
+            "must contain at least one lowercase character",
+            "must contain at least one digit"
+          ].sort)
+        end
+      end
+
+      context "when password is nil" do
+        let(:password) { nil }
+
+        it "is invalid" do
+          expect(subject).to be_invalid
+          expect(subject.errors[:password].sort).to eq([
+            "can't be blank",
+            "must be between 10 and 16 characters long",
+            "must contain at least one uppercase character",
+            "must contain at least one lowercase character",
+            "must contain at least one digit"
+          ].sort)
         end
       end
     end

@@ -52,6 +52,9 @@ group :development, :test do
   # Enforce clean code standards
   gem "rubocop", require: false
   gem "rubocop-rails-omakase"
+
+  # Debugger
+  gem "byebug"
 end
 
 group :development do

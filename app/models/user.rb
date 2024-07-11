@@ -12,22 +12,29 @@ class User < ApplicationRecord
   has_secure_password
 
   validates :name, presence: true
-  validates :password, presence: true, length: { in: 10..16 }
   validate :strong_password
 
   private
 
   def strong_password
-    # TODO
-    # It contains at least one lowercase character, one uppercase character and one digit.
-    # It cannot contain three repeating characters in a row (e.g. "...zzz..." is not strong, but "...zz...z..." is strong, assuming other conditions are met).
-    # For example, the following passwords are "strong":
-    # Aqpfk1swods
-    # QPFJWz1343439
-    # PFSHH78KSMa
-    # And the following passwords are not "strong":
-    # Abc123 (this is too short)
-    # abcdefghijklmnop (this does not contain an uppercase character or a digit)
-    # AAAfk1swods (this contains three repeating characters, namely AAA)
+    unless password&.length&.between?(10, 16)
+      errors.add(:password, "must be between 10 and 16 characters long")
+    end
+
+    unless password =~ /[a-z]/
+      errors.add(:password, "must contain at least one lowercase character")
+    end
+
+    unless password =~ /[A-Z]/
+      errors.add(:password, "must contain at least one uppercase character")
+    end
+
+    unless password =~ /\d/
+      errors.add(:password, "must contain at least one digit")
+    end
+
+    if password =~ /(.)\1{2,}/
+      errors.add(:password, "cannot contain three repeating characters in a row")
+    end
   end
 end

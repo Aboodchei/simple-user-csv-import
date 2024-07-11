@@ -8,4 +8,8 @@ class UserResult
     @status = status
     @errors = errors
   end
+
+  def description
+    ImportStatus::USER_MESSAGES[status]
+  end
 end
