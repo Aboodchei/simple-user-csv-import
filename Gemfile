@@ -49,9 +49,6 @@ group :development, :test do
   # For testing
   gem "rspec-rails"
 
-  # For generating fake data
-  gem "faker"
-
   # Enforce clean code standards
   gem "rubocop", require: false
   gem "rubocop-rails-omakase"
