@@ -15,7 +15,8 @@ class UserImportService
 
       ActiveRecord::Base.transaction do
         parsed_csv.each_with_index do |row, index|
-          row_number = index + 1
+          # add 2 to offset zero-based index + header
+          row_number = index + 2
           if valid_row?(row)
             results << create_user(row, row_number)
           else

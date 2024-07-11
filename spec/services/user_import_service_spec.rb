@@ -16,7 +16,7 @@ RSpec.describe UserImportService, type: :service do
         expect(result.status).to eq(ImportStatus::SUCCESS)
         expect(result.results.size).to eq(2)
         expect(result.results.map(&:status).uniq).to eq([ ImportStatus::SUCCESS ])
-        expect(result.results.map(&:row)).to eq([ 1, 2 ])
+        expect(result.results.map(&:row)).to eq([ 2, 3 ])
       end
 
       it 'correctly saves user info' do
@@ -69,7 +69,7 @@ RSpec.describe UserImportService, type: :service do
         expect(result.status).to eq(ImportStatus::INVALID_CSV_ROW)
         expect(result.results.size).to eq(1)
         expect(result.results.first.status).to eq(ImportStatus::INVALID_CSV_ROW)
-        expect(result.results.map(&:row)).to eq([ 2 ])
+        expect(result.results.map(&:row)).to eq([ 3 ])
       end
     end
 
@@ -82,7 +82,7 @@ RSpec.describe UserImportService, type: :service do
         expect(result.status).to eq(ImportStatus::INVALID_CSV_ROW)
         expect(result.results.size).to eq(1)
         expect(result.results.first.status).to eq(ImportStatus::INVALID_CSV_ROW)
-        expect(result.results.map(&:row)).to eq([ 2 ])
+        expect(result.results.map(&:row)).to eq([ 3 ])
       end
     end
 
@@ -95,7 +95,7 @@ RSpec.describe UserImportService, type: :service do
         expect(result.status).to eq(ImportStatus::INVALID_CSV_ROW)
         expect(result.results.size).to eq(3)
         expect(result.results.map(&:status)).to eq([ ImportStatus::INVALID_CSV_ROW, ImportStatus::FAILURE, ImportStatus::INVALID_CSV_ROW ])
-        expect(result.results.map(&:row)).to eq([ 2, 3, 4 ])
+        expect(result.results.map(&:row)).to eq([ 3, 4, 5 ])
       end
     end
 
@@ -108,7 +108,7 @@ RSpec.describe UserImportService, type: :service do
         expect(result.status).to eq(ImportStatus::PARTIAL_SUCCESS)
         expect(result.results.size).to eq(2)
         expect(result.results.map(&:status)).to eq([ ImportStatus::FAILURE, ImportStatus::SUCCESS ])
-        expect(result.results.map(&:row)).to eq([ 1, 2 ])
+        expect(result.results.map(&:row)).to eq([ 2, 3 ])
       end
     end
 
@@ -121,7 +121,7 @@ RSpec.describe UserImportService, type: :service do
         expect(result.status).to eq(ImportStatus::FAILURE)
         expect(result.results.size).to eq(2)
         expect(result.results.map(&:status).uniq).to eq([ ImportStatus::FAILURE ])
-        expect(result.results.map(&:row)).to eq([ 1, 2 ])
+        expect(result.results.map(&:row)).to eq([ 2, 3 ])
         expect(result.results.map(&:errors).flatten).to be_truthy
       end
     end
