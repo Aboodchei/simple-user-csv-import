@@ -4,7 +4,7 @@ class UserImportResult
   class << self
     def determine_status(results)
       # TODO: determine status based on the status of results
-    end  
+    end
   end
 
   def initialize(results:, status:)

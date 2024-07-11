@@ -47,10 +47,14 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 
   # For testing
-  gem 'rspec-rails'
+  gem "rspec-rails"
 
   # For generating fake data
-  gem 'faker'
+  gem "faker"
+
+  # Enforce clean code standards
+  gem "rubocop", require: false
+  gem "rubocop-rails-omakase"
 end
 
 group :development do
@@ -64,5 +68,5 @@ group :development do
   # gem "spring"
 
   # For annotating models
-  gem 'annotate'
+  gem "annotate"
 end

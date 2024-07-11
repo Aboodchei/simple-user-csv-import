@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  require 'csv'
+  require "csv"
 
   def index
   end
