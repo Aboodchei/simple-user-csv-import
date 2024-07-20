@@ -4,8 +4,6 @@ This was a fun project, I enjoyed it! It took me ~6 hours to complete.
 ## What's the idea here? 💡
 The main idea behind the backend design is to be as simple as possible - a single controller, with a basic index action only rendering a form, and a turbo-stream-powered import action that handles user CSV uploads using ViewComponents.
 
-This website is available online [here!](https://salty-fortress-34946-fd12824e3281.herokuapp.com/)
-
 ##### Setup
 - `$ rvm use 3.2.2` (or any similar ruby version management tool)
 - `$ bundle install` to install Ruby dependencies.
